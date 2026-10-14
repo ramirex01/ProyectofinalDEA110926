@@ -31,7 +31,7 @@ export default function App() {
 
   function goTo(index) {
     const next = Math.max(0, Math.min(chapters.length - 1, index));
-    if (next === current) return;
+    if (next === current) { setMenuOpen(false); return; }
     window.location.hash = chapters[next].id;
     setCurrent(next);
     setMenuOpen(false);
