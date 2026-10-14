@@ -1,30 +1,88 @@
-import { useState } from 'react';
-import { ArrowDown, ArrowRight, Check, ExternalLink, Fish, Leaf, Menu, Recycle, ShieldCheck, Waves, X } from 'lucide-react';
-import { events, sources, quiz } from './data/content.js';
+import { useEffect, useRef, useState } from 'react';
+import { ArrowLeft, ArrowRight, Menu, Waves, X } from 'lucide-react';
+import Discover from './chapters/Discover.jsx';
+import Explore from './chapters/Explore.jsx';
+import Understand from './chapters/Understand.jsx';
+import Decide from './chapters/Decide.jsx';
+import Act from './chapters/Act.jsx';
 
-const nav = [['contexto','Los Cóbanos'],['problema','Problemática'],['causas','Causas'],['impactos','Consecuencias'],['soluciones','Soluciones'],['recursos','Recursos'],['referencias','Fuentes']];
-function Out({ href, children, className = '' }) { return <a href={href} className={className} target="_blank" rel="noopener noreferrer">{children}<ExternalLink size={15} aria-hidden="true" /></a>; }
-function Ref({ id }) { return <a className="source-ref" href={`#ref-${id}`} aria-label={`Ir a la fuente ${id}`}>[{id}]</a>; }
-function Heading({ n, label, title, children }) { return <div className="section-head"><span className="section-number">{n}</span><div><span className="eyebrow">{label}</span><h2>{title}</h2><p>{children}</p></div></div>; }
-function Header() { const [open,setOpen]=useState(false); return <header className="site-header"><div className="shell header-inner"><a className="brand" href="#inicio" onClick={()=>setOpen(false)}><span className="brand-icon"><Waves size={24}/></span><span>LOS CÓBANOS<small>Educación ambiental · UES</small></span></a><nav className="desktop-nav" aria-label="Navegación principal">{nav.slice(0,6).map(([id,label])=><a key={id} href={`#${id}`}>{label}</a>)}</nav><a className="header-cta" href="#actua">Cómo actuar <ArrowRight size={16}/></a><button className="menu-button" aria-label={open?'Cerrar menú':'Abrir menú'} aria-expanded={open} aria-controls="mobile-nav" onClick={()=>setOpen(!open)}>{open?<X/>:<Menu/>}</button></div>{open&&<nav id="mobile-nav" className="mobile-nav" aria-label="Navegación móvil">{[['inicio','Inicio'],...nav,['actua','Cómo actuar']].map(([id,label])=><a key={id} href={`#${id}`} onClick={()=>setOpen(false)}>{label}</a>)}</nav>}</header>; }
-function Quiz() { const [answers,setAnswers]=useState({}); return <div className="quiz-list">{quiz.map((item,i)=>{ const selected=answers[i]; return <fieldset className="quiz-card" key={item.question}><legend><span>0{i+1}</span> {item.question}</legend><div className="quiz-options">{item.options.map((option,j)=><button type="button" key={option} className={`quiz-option ${selected===j?(j===item.correct?'correct':'incorrect'):''}`} aria-pressed={selected===j} onClick={()=>setAnswers({...answers,[i]:j})}>{option}</button>)}</div>{selected!==undefined&&<p className={`quiz-feedback ${selected===item.correct?'success':''}`} role="status"><strong>{selected===item.correct?'Correcto.':'Revisa la respuesta.'}</strong> {item.explanation} <Ref id={item.source}/></p>}</fieldset>;})}</div>; }
+const chapters = [
+  { id: 'descubre', label: 'Descubre', Component: Discover },
+  { id: 'explora', label: 'Explora', Component: Explore },
+  { id: 'comprende', label: 'Comprende', Component: Understand },
+  { id: 'decide', label: 'Decide', Component: Decide },
+  { id: 'actua', label: 'Actúa', Component: Act },
+];
 
-export default function App() { return <><a className="skip-link" href="#contenido">Saltar al contenido</a><Header/><main id="contenido" className="antialiased">
-<section id="inicio" className="hero"><div className="shell hero-grid"><div className="hero-copy"><span className="eyebrow hero-eyebrow">EDUCACIÓN AMBIENTAL · EL SALVADOR</span><h1 className="font-display">Los Cóbanos: <em>proteger la costa</em> comienza con nuestros residuos.</h1><p>Un recorrido educativo por la contaminación por residuos sólidos en Los Cóbanos, Sonsonate: evidencias documentadas, riesgos para la vida marina y alternativas de prevención.</p><div className="hero-actions"><a className="button button-light" href="#problema">Conocer la problemática <ArrowRight size={18}/></a><a className="button button-outline" href="#soluciones">Descubrir soluciones <ArrowDown size={18}/></a></div><p className="hero-note">Proyecto académico · Educación Ambiental y Cambio Climático · Universidad de El Salvador</p></div><figure className="hero-visual"><img className="object-cover" src={`${import.meta.env.BASE_URL}images/los-cobanos.jpg`} alt="Paisaje costero del Área Natural Protegida Complejo Los Cóbanos"/><figcaption>«Playa Los Cóbanos» (2020), Pollito03 · <Out href="https://commons.wikimedia.org/wiki/File:Playa_Los_C%C3%B3banos.jpg">CC BY-SA 4.0</Out> · Visualización recortada</figcaption></figure></div><div className="hero-bottom shell"><span>SONSONATE, EL SALVADOR</span><span>ÁREA NATURAL PROTEGIDA Y SITIO RAMSAR</span><a href="#contexto">Explorar el sitio <ArrowDown size={15}/></a></div></section>
+function initialChapter() {
+  const id = window.location.hash.replace('#', '');
+  const found = chapters.findIndex(chapter => chapter.id === id);
+  return found < 0 ? 0 : found;
+}
 
-<section id="contexto" className="section shell"><Heading n="01" label="UN ECOSISTEMA QUE VALE PROTEGER" title="Conoce Los Cóbanos">El Complejo Los Cóbanos se ubica en la costa de Sonsonate. Es un área natural protegida y sitio Ramsar con ecosistemas marino-costeros, incluidos arrecifes coralinos.</Heading><div className="context-grid"><div className="context-feature"><Waves size={36}/><h3>Una costa conectada con la vida marina</h3><p>Sus ecosistemas proporcionan refugio y espacios de alimentación o reproducción a especies marinas. También se relacionan con actividades como la pesca y el turismo. <Ref id="F1"/> <Ref id="F5"/></p></div><div className="context-aside"><span className="eyebrow">EL FOCO DE ESTE SITIO</span><p>Las jornadas ambientales han documentado residuos en la costa, el manglar y el fondo marino. Conocer qué se encontró ayuda a pensar cómo evitar que nuevos desechos lleguen al mar.</p><a href="#problema" className="text-link">Ver la evidencia <ArrowRight size={17}/></a></div></div></section>
+export default function App() {
+  const [current, setCurrent] = useState(initialChapter);
+  const [menuOpen, setMenuOpen] = useState(false);
+  const [skipMotion, setSkipMotion] = useState(false);
+  const contentRef = useRef(null);
+  const touchStart = useRef(null);
+  const previousChapter = useRef(current);
+  const { Component } = chapters[current];
 
-<section id="problema" className="section section-sage"><div className="shell"><Heading n="02" label="EVIDENCIA LOCAL" title="Residuos documentados en jornadas concretas">Estas cifras describen actividades, fechas y lugares específicos. No representan la generación diaria ni una tendencia anual de todo Los Cóbanos.</Heading><div className="evidence-grid">{events.map(e=><article className="evidence-card" key={e.year}><div className="evidence-date"><span>{e.year}</span><span>{e.date}</span></div><div className="evidence-body"><p className="eyebrow">{e.place}</p><h3>{e.title}</h3><p>{e.description}</p><Out href={e.url} className="text-link">Consultar la publicación</Out></div><span className="evidence-tag">Fuente {e.source}</span></article>)}</div><div className="note"><ShieldCheck size={22}/><p><strong>Cómo leer estos datos.</strong> Las cantidades de distintas jornadas no se suman ni se extrapolan. La inspección de marzo de 2026 no encontró redes fantasmas; el MARN sí documentó redes abandonadas en 2021. <Ref id="F2"/> <Ref id="F4"/></p></div></div></section>
+  function goTo(index) {
+    const next = Math.max(0, Math.min(chapters.length - 1, index));
+    if (next === current) { setMenuOpen(false); return; }
+    window.location.hash = chapters[next].id;
+    setCurrent(next);
+    setMenuOpen(false);
+    contentRef.current?.scrollTo({ top: 0, behavior: 'instant' });
+    window.scrollTo({ top: 0, behavior: 'instant' });
+  }
 
-<section id="causas" className="section shell"><Heading n="03" label="DE LA ACTIVIDAD HUMANA AL MAR" title="¿Cómo llegan los residuos a la costa?">Hay vías documentadas localmente y factores generales que conviene prevenir. No se atribuye un origen exacto a cada residuo sin un estudio de trazabilidad.</Heading><div className="cause-grid"><article><span>01</span><h3>Desechos de visitantes</h3><p>AES identifica la contaminación provocada por visitantes entre las amenazas del área. Los envases y empaques abandonados son una vía que puede prevenirse. <Ref id="F3"/></p></article><article><span>02</span><h3>Artes de pesca abandonadas</h3><p>El MARN documentó redes extraídas del fondo marino en 2021. Su recuperación requiere personal capacitado. <Ref id="F2"/></p></article><article><span>03</span><h3>Gestión inadecuada</h3><p>El PNUMA describe el aporte de residuos terrestres mal gestionados a la basura marina. No hay una medición de esta vía específica para Los Cóbanos. <Ref id="F6"/></p></article><article><span>04</span><h3>Viento y corrientes</h3><p>Los residuos pueden desplazarse tras ser abandonados. El MARN documentó el movimiento de artes de pesca por las corrientes. <Ref id="F2"/></p></article></div><div className="flow"><span>Consumo o actividad</span><ArrowRight/><span>Residuo no gestionado</span><ArrowRight/><span>Transporte y acumulación</span><ArrowRight/><span>Contacto con ecosistemas</span></div><p className="flow-caption">Esquema educativo; no representa una medición de campo en Los Cóbanos.</p></section>
+  useEffect(() => {
+    function onHash() { const next = initialChapter(); setCurrent(next); setMenuOpen(false); window.scrollTo(0, 0); }
+    window.addEventListener('hashchange', onHash);
+    return () => window.removeEventListener('hashchange', onHash);
+  }, []);
+  useEffect(() => { document.title = `${chapters[current].label} | Los Cóbanos`; }, [current]);
+  useEffect(() => {
+    if (previousChapter.current !== current) document.getElementById('chapter-title')?.focus({ preventScroll: true });
+    previousChapter.current = current;
+  }, [current]);
+  useEffect(() => {
+    function onKey(event) {
+      if (event.key === 'Escape') { setMenuOpen(false); return; }
+      if (!event.altKey || event.ctrlKey || event.metaKey) return;
+      if (event.key === 'ArrowRight') { event.preventDefault(); goTo(current + 1); }
+      if (event.key === 'ArrowLeft') { event.preventDefault(); goTo(current - 1); }
+    }
+    window.addEventListener('keydown', onKey);
+    return () => window.removeEventListener('keydown', onKey);
+  }, [current]);
 
-<section id="impactos" className="section section-dark"><div className="shell"><Heading n="04" label="EFECTOS Y RIESGOS" title="Lo que está en juego">Distinguimos un caso local documentado de los efectos generales descritos por el PNUMA y de riesgos que aún no se han cuantificado en Los Cóbanos.</Heading><div className="impact-grid"><article><Fish/><span className="impact-label">CASO LOCAL</span><h3>Fauna marina</h3><p>En 2021, el MARN informó del rescate de un pez globo atrapado en restos de red. Las redes y otros desechos pueden causar enredos y lesiones. <Ref id="F2"/></p></article><article><Waves/><span className="impact-label">RIESGO ECOLÓGICO</span><h3>Arrecifes y hábitats</h3><p>El PNUMA advierte que los plásticos afectan ecosistemas marinos, incluidos los corales. No se dispone de un porcentaje local de pérdida coralina por basura. <Ref id="F6"/> <Ref id="F7"/></p></article><article><Leaf/><span className="impact-label">RIESGO POTENCIAL</span><h3>Pesca y turismo</h3><p>La basura puede deteriorar el entorno y generar dificultades para actividades costeras. No se atribuyen pérdidas económicas cuantificadas a Los Cóbanos. <Ref id="F6"/></p></article></div></div></section>
+  function onTouchStart(event) {
+    if (event.target.closest('button, a, input')) { touchStart.current = null; return; }
+    touchStart.current = { x: event.touches[0].clientX, y: event.touches[0].clientY };
+  }
+  function onTouchEnd(event) {
+    if (!touchStart.current) return;
+    const dx = event.changedTouches[0].clientX - touchStart.current.x;
+    const dy = event.changedTouches[0].clientY - touchStart.current.y;
+    if (Math.abs(dx) > 90 && Math.abs(dx) > Math.abs(dy) * 1.7) goTo(current + (dx < 0 ? 1 : -1));
+    touchStart.current = null;
+  }
 
-<section id="soluciones" className="section shell"><Heading n="05" label="PREVENIR ANTES DE LIMPIAR" title="Tres alternativas para actuar">Son propuestas educativas y de gestión sujetas a coordinación local. Sus indicadores describen qué podría medirse al implementarlas; no son resultados obtenidos.</Heading><div className="solution-list"><article className="solution-card"><div className="solution-icon"><Leaf/></div><div><span className="eyebrow">PROPUESTA 01 · EDUCACIÓN</span><h3>Informar a visitantes, comunidad y comercios</h3><p>Señalización clara, charlas breves, recipientes reutilizables y mensajes compartidos con negocios y operadores turísticos.</p><div className="solution-meta"><strong>Participantes sugeridos</strong><span>Comunidad, centros educativos, comercios y autoridades.</span></div><div className="solution-meta"><strong>Indicadores por implementar</strong><span>Personas alcanzadas, comercios participantes y aprendizaje antes/después.</span></div><small>Fundamento: educación del MARN y prevención recomendada por PNUMA. <Ref id="F2"/> <Ref id="F5"/> <Ref id="F7"/></small></div></article><article className="solution-card"><div className="solution-icon"><Recycle/></div><div><span className="eyebrow">PROPUESTA 02 · GESTIÓN</span><h3>Reducir, separar y recolectar con responsabilidad</h3><p>Identificar puntos críticos mediante observación autorizada; habilitar separación solo donde exista una ruta efectiva de retiro y destino.</p><div className="solution-meta"><strong>Participantes sugeridos</strong><span>Autoridades locales, gestores autorizados, comercios y comunidad.</span></div><div className="solution-meta"><strong>Indicadores por implementar</strong><span>Puntos operativos, frecuencia de retiro y residuos por categoría.</span></div><small>Fundamento: prevención y reutilización antes del reciclaje. <Ref id="F7"/> <Ref id="F8"/></small></div></article><article className="solution-card"><div className="solution-icon"><Waves/></div><div><span className="eyebrow">PROPUESTA 03 · ACCIÓN COORDINADA</span><h3>Limpiar y registrar para prevenir nuevas acumulaciones</h3><p>Coordinar jornadas con responsables del área; delimitar sectores, clasificar residuos y publicar resultados con metodología transparente.</p><div className="solution-meta"><strong>Participantes sugeridos</strong><span>Instituciones ambientales, asociaciones, voluntariado y especialistas.</span></div><div className="solution-meta"><strong>Indicadores por implementar</strong><span>Cantidad por categoría y sector; participación comparable entre jornadas.</span></div><small>La limpieza subacuática y los residuos peligrosos requieren personal capacitado. <Ref id="F2"/> <Ref id="F3"/> <Ref id="F4"/></small></div></article></div></section>
-
-<section id="recursos" className="section section-sage"><div className="shell"><Heading n="06" label="APRENDER Y EXPLORAR" title="Recursos para comprender el problema">Consulta las publicaciones originales y pon a prueba lo aprendido. Las fotografías de medios e instituciones se enlazan, sin copiarlas al sitio.</Heading><div className="resource-grid"><div className="resource-card"><span className="eyebrow">GALERÍA DOCUMENTAL</span><h3>Tres jornadas, tres fuentes</h3><p>Lee las notas originales del MARN, AES y La Prensa Gráfica para conocer el contexto de cada actividad.</p><div className="resource-links">{events.map(e=><Out key={e.year} href={e.url}>{e.year} · {e.place}</Out>)}</div></div><div className="resource-card resource-highlight"><span className="eyebrow">RECURSO EN ESPAÑOL</span><h3>De la contaminación a la solución</h3><p>Reportaje interactivo del PNUMA sobre basura marina y contaminación por plásticos. Su alcance es global.</p><Out href="https://www.unep.org/interactives/pollution-to-solution/?lang=ES" className="button button-dark">Explorar el recurso</Out></div></div><div className="quiz-header"><span className="eyebrow">MINI CUESTIONARIO</span><h3>¿Qué aprendiste?</h3><p>Selecciona una respuesta para ver una explicación basada en las fuentes.</p></div><Quiz/></div></section>
-
-<section id="actua" className="section action-section"><div className="shell action-grid"><div><span className="eyebrow">ACTÚA POR LOS CÓBANOS</span><h2>Una costa más limpia comienza antes de llegar a la playa.</h2><p>Proteger Los Cóbanos también significa impedir que los residuos vuelvan a llegar al mar.</p></div><div className="action-list"><div><Check/><p><strong>Si visitas:</strong> lleva una botella reutilizable, evita desechables y guarda tus residuos hasta encontrar un punto adecuado.</p></div><div><Check/><p><strong>Si tienes un comercio:</strong> reduce empaques e informa a tus clientes sobre el manejo responsable de desechos.</p></div><div><Check/><p><strong>Si participas en la comunidad:</strong> únete a actividades autorizadas y comunica situaciones de riesgo a las autoridades.</p></div></div></div></section>
-
-<section id="referencias" className="section shell references"><Heading n="07" label="TRANSPARENCIA ACADÉMICA" title="Fuentes consultadas">Contenido elaborado a partir de documentos y publicaciones identificables. No constituye un estudio de campo propio.</Heading><ol>{sources.map(s=><li id={`ref-${s.id}`} key={s.id}><span className="ref-id">[{s.id}]</span><div>{s.author} ({s.date}). <cite>{s.title}</cite>. {s.publisher&&<span>{s.publisher}. </span>}<Out href={s.url}>Consultar fuente</Out></div></li>)}</ol><p className="editorial-note">Las cifras locales se citan con fecha y lugar. Los impactos descritos por el PNUMA se identifican como evidencia general; las alternativas son propuestas por implementar.</p></section>
-</main><footer className="site-footer"><div className="shell footer-grid"><div><span className="footer-brand"><Waves/> LOS CÓBANOS</span><p>Proyecto académico de Educación Ambiental y Cambio Climático · Universidad de El Salvador · 2026.</p><small>Sitio educativo independiente; no representa una comunicación oficial de la UES ni de las instituciones citadas.</small></div><div><strong>Explorar</strong><a href="#problema">La problemática</a><a href="#soluciones">Alternativas</a><a href="#referencias">Referencias</a></div><div><strong>Crédito fotográfico</strong><p>«Playa Los Cóbanos» (2020), Pollito03. <Out href="https://commons.wikimedia.org/wiki/File:Playa_Los_C%C3%B3banos.jpg">Ficha original</Out> · <Out href="https://creativecommons.org/licenses/by-sa/4.0/">CC BY-SA 4.0</Out>. Se visualiza recortada en la portada; el archivo no se editó.</p></div></div><div className="shell footer-bottom"><span>Los Cóbanos · Sonsonate, El Salvador</span><a href="#inicio">Volver arriba ↑</a></div></footer></>; }
+  return <div className={`experience antialiased ${skipMotion ? 'no-motion' : ''}`}>
+    <a className="skip-link" href="#main-content">Saltar al contenido</a>
+    <header className="global-header"><div className="global-header-inner">
+      <button className="brand" onClick={() => goTo(0)} aria-label="Volver a Descubre"><Waves size={25} /><span>LOS CÓBANOS<small>Una costa que necesita nuestra atención</small></span></button>
+      <span className="header-chapter">{String(current + 1).padStart(2, '0')} / 05 · {chapters[current].label}</span>
+      <div className="header-actions"><button className="motion-toggle" aria-pressed={skipMotion} onClick={() => setSkipMotion(!skipMotion)}>{skipMotion ? 'Activar transiciones' : 'Saltar animaciones'}</button><button className="menu-toggle" aria-expanded={menuOpen} aria-controls="chapter-menu" aria-label={menuOpen ? 'Cerrar menú' : 'Abrir menú'} onClick={() => setMenuOpen(!menuOpen)}>{menuOpen ? <X /> : <Menu />}</button></div>
+    </div></header>
+    {menuOpen && <nav id="chapter-menu" className="chapter-menu" aria-label="Capítulos"><div className="chapter-menu-inner"><span className="micro-label">EXPLORA LA HISTORIA</span>{chapters.map((chapter, index) => <button key={chapter.id} className={index === current ? 'active' : ''} aria-current={index === current ? 'page' : undefined} onClick={() => goTo(index)}><span>0{index + 1}</span>{chapter.label}<ArrowRight size={20} /></button>)}<p>Atajo de teclado: Alt + ← / → · En móvil, desliza horizontalmente para cambiar de capítulo.</p></div></nav>}
+    <main id="main-content" ref={contentRef} onTouchStart={onTouchStart} onTouchEnd={onTouchEnd}>
+      <div key={chapters[current].id} className="chapter-enter"><Component goTo={goTo} /></div>
+    </main>
+    <nav className="chapter-controls" aria-label="Navegación de capítulos"><button onClick={() => goTo(current - 1)} disabled={current === 0} aria-label="Capítulo anterior"><ArrowLeft size={19} /><span>Anterior</span></button><div className="progress-track" role="progressbar" aria-label="Progreso de capítulos" aria-valuemin="1" aria-valuemax="5" aria-valuenow={current + 1}><span style={{ width: `${(current + 1) * 20}%` }} /></div><span className="progress-count">0{current + 1} / 05</span><button onClick={() => goTo(current + 1)} disabled={current === 4} aria-label="Capítulo siguiente"><span>Siguiente</span><ArrowRight size={19} /></button></nav>
+  </div>;
+}
