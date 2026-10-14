@@ -3,8 +3,8 @@ export default {
   content: ['./index.html', './src/**/*.{js,jsx}'],
   theme: {
     extend: {
-      colors: { navy: '#0b1e36', electric: '#1a62ff', cyan: '#06b6d4', canvas: '#f8faff' },
-      fontFamily: { sans: ['Hanken Grotesk', 'Arial', 'sans-serif'], display: ['Space Grotesk', 'Arial', 'sans-serif'], mono: ['JetBrains Mono', 'monospace'] },
+      colors: { forest: '#103a2e', ocean: '#146b75', sage: '#eef5ee', sand: '#f8faf7' },
+      fontFamily: { sans: ['Plus Jakarta Sans', 'Arial', 'sans-serif'], display: ['Outfit', 'Arial', 'sans-serif'] },
     },
   },
   plugins: [],

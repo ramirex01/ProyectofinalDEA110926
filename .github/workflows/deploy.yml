@@ -1,4 +1,4 @@
-name: Publicar portafolio en GitHub Pages
+name: Publicar sitio Los Cóbanos en GitHub Pages
 
 on:
   push:

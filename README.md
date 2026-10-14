@@ -1,38 +1,44 @@
-# Sitio Web de Educación Ambiental y Cambio Climático · DEA1109
+# Los Cóbanos: proteger la costa comienza con nuestros residuos
 
-Trabajo final para la asignatura de Educación Ambiental y Cambio Climático de la Licenciatura en Informática Educativa (UES, Ciclo II-2026). Construido con React, Vite y Tailwind CSS como una plataforma interactiva para la concientización ambiental.
+Sitio educativo sobre la contaminación por residuos sólidos en Los Cóbanos, Sonsonate, y alternativas de prevención. Proyecto académico de la asignatura **Educación Ambiental y Cambio Climático** de la Universidad de El Salvador (2026). El sitio no representa una comunicación oficial de la UES ni un estudio de campo propio.
 
-## 🚀 Ejecutar en Desarrollo Local o Codespaces
+## Tecnologías
 
-Para correr el entorno de desarrollo localmente o en tu Codespace, abre la terminal y ejecuta:
+- React 18 para componentes e interactividad.
+- Vite 5 para desarrollo y compilación.
+- Tailwind CSS 3, PostCSS y CSS para la interfaz responsive.
+- `lucide-react` para iconografía.
+
+## Desarrollo local
+
+Requiere Node.js 20 o compatible.
 
 ```bash
-npm install
+npm ci
 npm run dev
 ```
 
-Para verificar y previsualizar la compilación de producción antes de subir cambios:
+Para generar y revisar la versión de producción:
 
 ```bash
 npm run build
 npm run preview
 ```
 
-## 🌍 Publicación en GitHub Pages
+## Organización
 
-El proyecto utiliza GitHub Actions para automatizar su despliegue en la web tras cada envío a `main`.
+- `src/App.jsx`: secciones, navegación y cuestionario.
+- `src/data/content.js`: jornadas documentadas, bibliografía y preguntas.
+- `src/index.css`: diseño responsive y estados de interacción.
+- `public/images/los-cobanos.jpg`: fotografía de portada con licencia abierta.
+- `.github/workflows/deploy.yml`: publicación mediante GitHub Actions.
 
-1. Confirma que la propiedad `base` en tu archivo `vite.config.js` coincida exactamente con este nuevo repositorio:
-   ```javascript
-   base: '/ProyectofinalDEA110926/',
-   ```
-2. La URL pública de tu sitio web será: `https://github.io`
-3. En **Settings → Pages** de este repositorio en GitHub, asegúrate de elegir **GitHub Actions** como la fuente de publicación (Source).
+## Rigor académico y fotografía
 
-## 📋 Estructura y Requisitos del Proyecto (Rúbrica)
+El contenido procede del paquete de investigación suministrado para este proyecto. Las cifras de 2021, 2025 y 2026 corresponden a jornadas y lugares específicos; no se usan como total anual ni como tendencia de contaminación. Los riesgos generales del PNUMA se distinguen de las observaciones locales. Las tres alternativas y sus indicadores son propuestas por implementar. Las referencias se muestran al final de la página.
 
-El sitio web está diseñado para cubrir de manera integral los siguientes componentes clave exigidos en la evaluación:
-- **Problemática Ambiental Local:** Identificación de la problemática en la comunidad seleccionada de El Salvador, detallando sus causas principales y consecuencias ecológicas/sociales.
-- **Propuestas de Solución:** Detalle didáctico de al menos 3 soluciones viables, pertinentes y fundamentadas desde la educación ambiental y la gestión ambiental.
-- **Recursos Multimedia:** Integración de elementos interactivos, imágenes, videos o audios que favorezcan la comprensión del tema.
-- **Fuentes de Consulta:** Sección dedicada a presentar al menos 2 referencias bibliográficas confiables redactadas bajo la normativa APA 7.
+Fotografía: «Playa Los Cóbanos» (2020), **Pollito03**, [ficha original](https://commons.wikimedia.org/wiki/File:Playa_Los_C%C3%B3banos.jpg), [CC BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/). El archivo descargado no se modificó; la imagen se visualiza recortada en la portada mediante CSS. Las fotografías de MARN, AES y prensa se consultan en sus publicaciones originales y no se reproducen aquí.
+
+## GitHub Pages
+
+`vite.config.js` ya establece `base: '/ProyectofinalDEA110926/'`, correspondiente al nombre del repositorio. Al integrar los cambios en `main`, el flujo de GitHub Actions instala dependencias con `npm ci`, compila con `npm run build` y publica `dist`. En **Settings → Pages**, seleccionar **GitHub Actions** como fuente. La dirección esperada es `https://ramirex01.github.io/ProyectofinalDEA110926/` una vez que el despliegue termine correctamente.
