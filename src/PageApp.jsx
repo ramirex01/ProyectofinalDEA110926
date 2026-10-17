@@ -141,6 +141,10 @@ export default function PageApp({ page }) {
               Síntesis educativa de fuentes publicadas. No constituye
               investigación de campo propia ni comunicación oficial de la UES.
             </p>
+            <p className="footer-authors">
+              Elaborado por Mario Elmer Ramírez Grande y Valery Crisela Zelaya
+              León
+            </p>
           </div>
           <a href="./referencias.html">
             Fuentes y créditos <ArrowUpRight size={17} />

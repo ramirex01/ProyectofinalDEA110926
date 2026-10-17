@@ -105,7 +105,7 @@ export default function Home() {
           <div>
             <span className="eyebrow dark">EL RECORRIDO</span>
             <h2>
-              Cinco vistas para <em>comprender y actuar.</em>
+              Cinco secciones para <em>comprender y actuar.</em>
             </h2>
           </div>
           <p>
@@ -133,11 +133,17 @@ export default function Home() {
         </div>
         <div className="home-disclaimer">
           <Waves size={24} />
-          <p>
-            Proyecto académico de Educación Ambiental y Cambio Climático de la
-            Universidad de El Salvador. La página sintetiza publicaciones
-            externas; no presenta trabajo de campo propio ni datos inventados.
-          </p>
+          <div>
+            <strong className="academic-title">
+              Contaminación por residuos sólidos en Los Cóbanos, Sonsonate, y
+              alternativas de prevención desde la educación ambiental
+            </strong>
+            <p>
+              Proyecto académico de Educación Ambiental y Cambio Climático de la
+              Universidad de El Salvador. La página sintetiza publicaciones
+              externas; no presenta trabajo de campo propio ni datos inventados.
+            </p>
+          </div>
         </div>
       </section>
     </>
