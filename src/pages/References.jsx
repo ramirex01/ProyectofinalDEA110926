@@ -79,9 +79,8 @@ export default function References() {
               UES o de las instituciones citadas.
             </p>
             <p>
-              La identificación de integrantes queda pendiente de los datos
-              proporcionados por el equipo; no se atribuyen nombres sin
-              confirmación.
+              <strong>Integrantes:</strong> Valery Crisela Zelaya León y Mario
+              Elmer Ramírez Grande.
             </p>
             <p>
               <a

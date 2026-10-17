@@ -2,16 +2,18 @@
 
 Sitio académico multipágina sobre la contaminación por residuos sólidos en Los Cóbanos, Sonsonate, y alternativas de prevención desde la educación ambiental. Es una síntesis de publicaciones verificables para la asignatura Educación Ambiental y Cambio Climático de la Universidad de El Salvador (2026). No presenta investigación de campo propia ni representa una comunicación oficial de la UES.
 
+**Integrantes:** Valery Crisela Zelaya León y Mario Elmer Ramírez Grande.
+
 ## Recorrido
 
-| Página | Contenido |
-| --- | --- |
-| `index.html` | Portada, evidencia local destacada y acceso a las demás vistas. |
+| Página             | Contenido                                                                          |
+| ------------------ | ---------------------------------------------------------------------------------- |
+| `index.html`       | Portada, evidencia local destacada y acceso a las demás vistas.                    |
 | `diagnostico.html` | Territorio, importancia ecológica, tres jornadas documentadas y nota metodológica. |
-| `impactos.html` | Causas y consecuencias explorables mediante pestañas. |
-| `soluciones.html` | Acciones por público, tres propuestas desplegables e indicadores por implementar. |
-| `aprende.html` | Comparador, simulador, compromisos y cuestionario con retroalimentación. |
-| `referencias.html` | Ocho fuentes, licencias, créditos y carácter académico. |
+| `impactos.html`    | Causas y consecuencias explorables mediante pestañas.                              |
+| `soluciones.html`  | Acciones por público, tres propuestas desplegables e indicadores por implementar.  |
+| `aprende.html`     | Comparador, simulador, compromisos y cuestionario con retroalimentación.           |
+| `referencias.html` | Ocho fuentes, licencias, créditos y carácter académico.                            |
 
 Las cifras de 2021, 2025 y 2026 corresponden a jornadas y lugares concretos: no se suman ni extrapolan. Los efectos generales descritos por el PNUMA se distinguen de la evidencia local. Las metas e indicadores son propuestas, no resultados obtenidos. Las dos imágenes del comparador son ilustraciones educativas generadas para este sitio, no fotografías documentales.
 
@@ -41,7 +43,7 @@ npm run preview
 
 ## GitHub Pages
 
-`.github/workflows/deploy.yml` publica la compilación de `main` mediante GitHub Actions. La propiedad `base` de Vite coincide con el nombre del repositorio. Tras publicar, la URL es <https://ramirex01.github.io/ProyectofinalDEA110926/>. Este rediseño permanece local hasta su revisión y autorización de push.
+`.github/workflows/deploy.yml` publica la compilación de `main` mediante GitHub Actions. La propiedad `base` de Vite coincide con el nombre del repositorio. URL pública: <https://ramirex01.github.io/ProyectofinalDEA110926/>.
 
 ## Fotografías y licencias
 
