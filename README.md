@@ -6,6 +6,8 @@ Landing page educativa sobre la contaminación por residuos sólidos en Los Cób
 
 La página tiene navegación por anclas y desplazamiento natural: **Inicio, Los Cóbanos, Diagnóstico, Impactos, Soluciones, Indicadores y Referencias**. También incluye un comparador visual y un simulador educativo. El menú móvil, los controles interactivos y el botón para volver al inicio funcionan con teclado y toque.
 
+El enlace anterior con `#descubre` sigue abriendo la portada del sitio.
+
 Las cifras de 2021, 2025 y 2026 corresponden a jornadas y lugares concretos; no se suman ni se extrapolan. Los efectos generales descritos por el PNUMA se distinguen de la evidencia local. Las metas e indicadores son propuestas por implementar, no logros obtenidos.
 
 El comparador presenta **dos ilustraciones educativas generadas para este sitio** y rotuladas como tales. No son fotografías documentales de Los Cóbanos. Las ilustraciones se optimizaron como WebP para reducir su tamaño de descarga.
