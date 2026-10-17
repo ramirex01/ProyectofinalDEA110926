@@ -36,6 +36,14 @@ try {
     output.set(file, markup);
     if (!markup.includes('aria-current="page"'))
       errors.push(`No se marca la página activa en ${file}`);
+    if (
+      !markup.includes(
+        "Elaborado por Mario Elmer Ramírez Grande y Valery Crisela Zelaya León",
+      )
+    )
+      errors.push(`Falta la autoría en ${file}`);
+    if (names[index] === "inicio" && !markup.includes("Cinco secciones para"))
+      errors.push("Falta el título actualizado en la portada");
     if (names[index] !== "inicio" && !markup.includes("Página siguiente"))
       errors.push(`Falta navegación de recorrido en ${file}`);
     console.log(`Renderizado: ${file} (${markup.length} caracteres)`);
