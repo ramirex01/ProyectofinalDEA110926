@@ -46,8 +46,8 @@ if not exist "node_modules\.bin\vite.cmd" (
   if errorlevel 1 goto :install_failed
 )
 
-echo Validando compilacion...
-call npm run build
+echo Validando compilacion, paginas e interacciones...
+call npm run check
 if errorlevel 1 goto :build_failed
 
 echo.
