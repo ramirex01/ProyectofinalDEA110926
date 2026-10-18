@@ -142,8 +142,8 @@ export default function PageApp({ page }) {
               investigación de campo propia ni comunicación oficial de la UES.
             </p>
             <p className="footer-authors">
-              Elaborado por Mario Elmer Ramírez Grande y Valery Crisela Zelaya
-              León
+              Elaborado por Valery Crisela Zelaya León y Mario Elmer Ramírez
+              Grande
             </p>
           </div>
           <a href="./referencias.html">
