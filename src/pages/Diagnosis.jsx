@@ -3,6 +3,28 @@ import { PageIntro, Citation } from "../components/PageBits.jsx";
 import { External, PhotoCredit } from "../components/StoryUI.jsx";
 import { events, sources } from "../data/content.js";
 import { image } from "../data/assets.js";
+import { AnimatedText, useInView } from "../components/Motion.jsx";
+
+function TimelineItem({ event }) {
+  const [ref, visible] = useInView({ threshold: 0.3 });
+  return (
+    <li ref={ref} className={`timeline-item${visible ? " is-visible" : ""}`}>
+      <span className="timeline-year">{event.year}</span>
+      <span className="timeline-node" aria-hidden="true" />
+      <article className="timeline-body">
+        <p className="timeline-date">{event.date}</p>
+        <h3>
+          <AnimatedText text={event.title} />
+        </h3>
+        <p className="place">{event.place}</p>
+        <p>{event.description}</p>
+        <External href={event.url}>
+          Publicación original [{event.source}]
+        </External>
+      </article>
+    </li>
+  );
+}
 
 export default function Diagnosis() {
   return (
@@ -61,21 +83,11 @@ export default function Diagnosis() {
               las publicaciones originales para revisar el contexto.
             </p>
           </div>
-          <div className="evidence-grid">
+          <ol className="timeline">
             {events.map((event) => (
-              <article key={event.year} className="evidence-card">
-                <span>
-                  {event.date} de {event.year}
-                </span>
-                <strong>{event.title}</strong>
-                <p className="place">{event.place}</p>
-                <p>{event.description}</p>
-                <External href={event.url}>
-                  Publicación original [{event.source}]
-                </External>
-              </article>
+              <TimelineItem key={event.year} event={event} />
             ))}
-          </div>
+          </ol>
         </div>
       </section>
       <aside className="container method-note">

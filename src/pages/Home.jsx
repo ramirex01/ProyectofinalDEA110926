@@ -9,6 +9,7 @@ import {
 } from "lucide-react";
 import { PhotoCredit } from "../components/StoryUI.jsx";
 import { Citation } from "../components/PageBits.jsx";
+import { CountUp } from "../components/Motion.jsx";
 import { image } from "../data/assets.js";
 
 const destinations = [
@@ -49,17 +50,44 @@ const destinations = [
   },
 ];
 
+const figures = [
+  {
+    year: "2021",
+    source: "F2",
+    lead: "Más de",
+    value: 80,
+    unit: "voluntarios",
+    text: "Jornada del MARN en la zona marina y el manglar.",
+  },
+  {
+    year: "2025",
+    source: "F3",
+    lead: "Más de",
+    value: 63,
+    unit: "libras",
+    text: "Jornada de AES El Salvador y FUNZEL en playa Los Lagartos.",
+  },
+  {
+    year: "2026",
+    source: "F4",
+    lead: "Cerca de",
+    value: null,
+    big: "una tonelada",
+    unit: "",
+    text: "Retirada de la orilla en una jornada de FIAES; aparte, 25 libras de basura subacuática.",
+  },
+];
+
 export default function Home() {
   return (
     <>
       <section className="home-hero" id="descubre" aria-labelledby="home-title">
         <img
           src={image("los-cobanos.jpg")}
-          alt="Costa rocosa del Complejo Los Cóbanos"
+          alt="Costa rocosa del Complejo Los Cóbanos con lanchas de pesca bajo un cielo de nubes"
         />
         <div className="home-shade" />
         <div className="container home-hero-content">
-          <span className="eyebrow">SONSONATE · EL SALVADOR</span>
           <h1 id="home-title">
             Los Cóbanos.
             <br />
@@ -67,40 +95,56 @@ export default function Home() {
             <br />
             nuestra atención.
           </h1>
-          <p>
+          <p className="hero-lead">
             Un recorrido educativo por la contaminación por residuos sólidos y
             las alternativas para prevenirla.
           </p>
-          <a className="button coral" href="./diagnostico.html">
-            Comenzar recorrido <ArrowRight size={18} />
-          </a>
+          <div className="hero-foot">
+            <a className="button coral" href="./diagnostico.html">
+              Comenzar recorrido <ArrowRight size={18} />
+            </a>
+            <PhotoCredit />
+          </div>
         </div>
-        <div className="hero-credit container">
-          <PhotoCredit />
+      </section>
+      <section className="figures" aria-labelledby="figures-title">
+        <div className="container">
+          <h2 id="figures-title">Tres jornadas, tres lugares distintos</h2>
+          <ol className="figures-list">
+            {figures.map((item) => (
+              <li key={item.year}>
+                <span className="figure-year">{item.year}</span>
+                <p className="figure-value">
+                  <span className="figure-lead">{item.lead}</span>
+                  {item.value !== null ? (
+                    <>
+                      <span className="figure-number">
+                        <CountUp value={item.value} />
+                      </span>
+                      <span className="figure-unit">{item.unit}</span>
+                    </>
+                  ) : (
+                    <span className="figure-number figure-word">
+                      {item.big}
+                    </span>
+                  )}
+                </p>
+                <p className="figure-text">
+                  {item.text} <Citation id={item.source} />
+                </p>
+              </li>
+            ))}
+          </ol>
+          <p className="figures-note">
+            Cada cifra pertenece a una jornada y a un sitio concretos: no se
+            suman ni muestran una tendencia anual.{" "}
+            <a href="./diagnostico.html">
+              Leer el diagnóstico <ArrowRight size={16} />
+            </a>
+          </p>
         </div>
       </section>
       <section className="home-after container">
-        <div className="featured-evidence">
-          <div>
-            <span className="eyebrow dark">EVIDENCIA LOCAL · MARZO 2026</span>
-            <h2>Cerca de una tonelada</h2>
-            <p>
-              de desechos fue retirada de la orilla en una jornada coordinada
-              por FIAES; por separado se recogieron 25 libras de basura
-              subacuática. Es el resultado de esa actividad, no una medición
-              anual.
-            </p>
-            <a href="./diagnostico.html">
-              Leer el diagnóstico <ArrowRight size={17} />
-            </a>
-          </div>
-          <div className="evidence-number">
-            2026
-            <span>
-              Los Cóbanos <Citation id="F4" />
-            </span>
-          </div>
-        </div>
         <div className="route-heading">
           <div>
             <span className="eyebrow dark">EL RECORRIDO</span>
