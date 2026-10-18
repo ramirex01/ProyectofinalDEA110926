@@ -38,7 +38,7 @@ try {
       errors.push(`No se marca la página activa en ${file}`);
     if (
       !markup.includes(
-        "Elaborado por Mario Elmer Ramírez Grande y Valery Crisela Zelaya León",
+        "Elaborado por Valery Crisela Zelaya León y Mario Elmer Ramírez Grande",
       )
     )
       errors.push(`Falta la autoría en ${file}`);
