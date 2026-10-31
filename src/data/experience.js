@@ -66,6 +66,10 @@ export const proposals = [
     title: "Educación ambiental",
     description:
       "Señalización, charlas breves y materiales gráficos sobre especies y residuos, coordinados con comercios, centros educativos y autoridades.",
+    implementation:
+      "Acordar mensajes con la administración del área y actores locales; ubicarlos en puntos de ingreso y compartirlos antes de las visitas. Comprobar su comprensión con preguntas breves.",
+    viability:
+      "Requiere autorización para instalar materiales, responsables de actualización y coordinación con quienes atienden a visitantes.",
     refs: ["F2", "F5", "F7"],
   },
   {
@@ -73,6 +77,10 @@ export const proposals = [
     title: "Prevención y gestión adecuada",
     description:
       "Piloto de reducción y separación de residuos únicamente donde exista una ruta efectiva de recolección y un destino apropiado.",
+    implementation:
+      "Primero verificar con el servicio competente el retiro y destino de cada categoría. Después probar puntos de separación claramente rotulados y registrar su uso y la frecuencia de retiro.",
+    viability:
+      "No instalar recipientes de separación si no existe una ruta de recolección que mantenga separados los materiales.",
     refs: ["F7", "F8"],
   },
   {
@@ -80,6 +88,10 @@ export const proposals = [
     title: "Limpiezas con clasificación y seguimiento",
     description:
       "Jornadas coordinadas para clasificar y registrar residuos por fecha, sector y categoría. Redes subacuáticas y objetos peligrosos requieren personal capacitado.",
+    implementation:
+      "Definir con las autoridades los sectores, permisos, responsables y medidas de seguridad. Registrar por separado lugar, fecha y tipo de residuo para comparar jornadas sin confundirlas con el total producido en la zona.",
+    viability:
+      "Asegurar el retiro y destino de lo recolectado. La extracción subacuática debe quedar exclusivamente a cargo de equipos autorizados y capacitados.",
     refs: ["F2", "F3", "F4"],
   },
 ];

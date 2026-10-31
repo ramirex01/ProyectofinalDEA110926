@@ -104,6 +104,12 @@ export default function Solutions() {
                 <div>
                   <p>{item.description}</p>
                   <p>
+                    <strong>Aplicación propuesta.</strong> {item.implementation}
+                  </p>
+                  <p>
+                    <strong>Condiciones de viabilidad.</strong> {item.viability}
+                  </p>
+                  <p>
                     Fundamento:{" "}
                     {item.refs.map((id) => (
                       <Citation key={id} id={id} />

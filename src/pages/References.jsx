@@ -3,6 +3,13 @@ import { PageIntro } from "../components/PageBits.jsx";
 import { sources } from "../data/content.js";
 import { External } from "../components/StoryUI.jsx";
 
+const orderedSources = [...sources].sort(
+  (a, b) =>
+    a.author.localeCompare(b.author, "es") ||
+    a.date.localeCompare(b.date, "es") ||
+    a.title.localeCompare(b.title, "es"),
+);
+
 export default function References() {
   return (
     <>
@@ -30,7 +37,7 @@ export default function References() {
           </p>
         </div>
         <ol className="reference-list">
-          {sources.map((source) => (
+          {orderedSources.map((source) => (
             <li key={source.id} id={`ref-${source.id}`}>
               <span className="ref-id">[{source.id}]</span>
               <p>
@@ -38,7 +45,9 @@ export default function References() {
                 {source.author.endsWith(".") ? "" : "."} ({source.date}).{" "}
                 <cite>{source.title}</cite>.{" "}
                 {source.publisher && <>{source.publisher}. </>}
-                <External href={source.url}>Consultar fuente</External>
+                <a href={source.url} target="_blank" rel="noopener noreferrer">
+                  {source.url}
+                </a>
               </p>
             </li>
           ))}
