@@ -90,10 +90,10 @@ export const sources = [
   {
     id: "F8",
     author: "Programa de las Naciones Unidas para el Medio Ambiente",
-    date: "2021, 30 de junio",
+    date: "2021, 16 de febrero",
     title:
-      "Abordar la contaminación por productos de plástico desechables utilizando un enfoque de ciclo de vida",
-    url: "https://www.unep.org/es/resources/publicaciones/abordar-la-contaminacion-por-productos-de-plastico-desechables-utilizando",
+      "Addressing single-use plastic products pollution using a life cycle approach",
+    url: "https://wedocs.unep.org/items/99c59fb7-2bf1-40f4-8121-063346f85ace",
   },
 ];
 // Las letras distinguen obras del mismo autor publicadas en el mismo año.
