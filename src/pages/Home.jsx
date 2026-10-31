@@ -130,7 +130,7 @@ export default function Home() {
                   )}
                 </p>
                 <p className="figure-text">
-                  {item.text} <Citation id={item.source} />
+                  {item.text.replace(/\.$/, "")} <Citation id={item.source} />.
                 </p>
               </li>
             ))}

@@ -1,5 +1,5 @@
 import { ShieldCheck } from "lucide-react";
-import { PageIntro, Citation } from "../components/PageBits.jsx";
+import { PageIntro, Citation, CitationGroup } from "../components/PageBits.jsx";
 import { External, PhotoCredit } from "../components/StoryUI.jsx";
 import { events, sources } from "../data/content.js";
 import { image } from "../data/assets.js";
@@ -18,7 +18,7 @@ function TimelineItem({ event }) {
         </h3>
         <p className="place">{event.place}</p>
         <p>
-          {event.description} <Citation id={event.source} />
+          {event.description.replace(/\.$/, "")} <Citation id={event.source} />.
         </p>
         <External href={event.url}>
           Publicación original [{event.source}]
@@ -42,7 +42,7 @@ export default function Diagnosis() {
       >
         Los Cóbanos es un área natural protegida y sitio Ramsar en Sonsonate. La
         protección del ambiente marino-costero se relaciona con la vida marina,
-        la pesca y el turismo. <Citation id="F1" />
+        la pesca y el turismo <Citation id="F1" />.
       </PageIntro>
       <section className="container two-column context-block">
         <figure className="photo-frame">
@@ -68,7 +68,7 @@ export default function Diagnosis() {
           <p>
             El plan de manejo del MARN describe el valor ecológico del complejo;
             una publicación institucional posterior recoge acciones de
-            protección marina. <Citation id="F1" /> <Citation id="F5" />
+            protección marina <CitationGroup ids={["F1", "F5"]} />.
           </p>
           <External href={sources[0].url}>Consultar plan de manejo</External>
         </div>
@@ -101,8 +101,7 @@ export default function Diagnosis() {
             se suman ni se extrapolan al año completo, y no establecen una
             tendencia estadística para toda la costa. En la inspección de 2026
             no se encontraron redes fantasmas; las redes retiradas corresponden
-            a la publicación de 2021. <Citation id="F2" /> <Citation id="F3" />{" "}
-            <Citation id="F4" />
+            a la publicación de 2021 <CitationGroup ids={["F2", "F3", "F4"]} />.
           </p>
         </div>
       </aside>

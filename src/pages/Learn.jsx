@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { ArrowRight, Check, MoveHorizontal, RotateCcw } from "lucide-react";
-import { PageIntro, Citation } from "../components/PageBits.jsx";
+import { PageIntro, Citation, CitationGroup } from "../components/PageBits.jsx";
 import { image } from "../data/assets.js";
 import { quiz } from "../data/content.js";
 import { commitments, situations } from "../data/experience.js";
@@ -59,8 +59,7 @@ function Comparator() {
         <p>
           <strong>Ilustraciones, no fotografías documentales.</strong> Reducir
           productos innecesarios, reutilizar y gestionar bien los residuos puede
-          evitar que lleguen al entorno. <Citation id="F7" />{" "}
-          <Citation id="F8" />
+          evitar que lleguen al entorno <CitationGroup ids={["F7", "F8"]} />.
         </p>
       </div>
     </div>
@@ -169,7 +168,8 @@ function Simulator() {
             </div>
             {answer !== undefined && (
               <div className="feedback" role="status">
-                {item.options[answer].feedback} <Citation id={item.source} />
+                {item.options[answer].feedback.replace(/\.$/, "")}{" "}
+                <Citation id={item.source} />.
               </div>
             )}
             {answer !== undefined && (
@@ -290,7 +290,8 @@ function Quiz() {
                 {answers[index] === item.correct
                   ? "Correcto. "
                   : "Revisa la explicación: "}
-                {item.explanation} <Citation id={item.source} />
+                {item.explanation.replace(/\.$/, "")}{" "}
+                <Citation id={item.source} />.
               </p>
             )}
           </fieldset>
