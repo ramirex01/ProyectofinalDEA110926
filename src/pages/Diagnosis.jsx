@@ -17,7 +17,9 @@ function TimelineItem({ event }) {
           <AnimatedText text={event.title} />
         </h3>
         <p className="place">{event.place}</p>
-        <p>{event.description}</p>
+        <p>
+          {event.description} <Citation id={event.source} />
+        </p>
         <External href={event.url}>
           Publicación original [{event.source}]
         </External>

@@ -146,10 +146,8 @@ summary:focus-visible {
   flex: none;
 }
 .citation {
-  display: inline-flex;
-  align-items: center;
-  gap: 1px;
-  white-space: nowrap;
+  display: inline;
+  overflow-wrap: normal;
 }
 .photo-credit {
   font-size: 0.72rem;

@@ -1,5 +1,4 @@
-import { ArrowUpRight } from "lucide-react";
-import { sources } from "../data/content.js";
+import { sources, apaYears } from "../data/content.js";
 
 export function PageIntro({ number, eyebrow, title, children }) {
   return (
@@ -15,13 +14,14 @@ export function PageIntro({ number, eyebrow, title, children }) {
 
 export function Citation({ id, direct = false }) {
   const source = sources.find((item) => item.id === id);
+  const author = source.id === "F4" ? "Román" : source.author;
   return (
     <a
       className="citation"
       href={direct ? source.url : `./referencias.html#ref-${id}`}
       {...(direct ? { target: "_blank", rel: "noopener noreferrer" } : {})}
     >
-      [{id}]<ArrowUpRight size={13} aria-hidden="true" />
+      ({author}, {apaYears[id]})
     </a>
   );
 }
