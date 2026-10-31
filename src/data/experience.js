@@ -3,7 +3,7 @@ export const relations = [
     cause: "Desechos abandonados",
     effect: "Acumulación en la costa",
     detail:
-      "AES identifica la contaminación provocada por visitantes entre las amenazas del área. El MARN documentó botellas, bolsas y latas en una jornada de 2021. No se conoce la procedencia de cada objeto.",
+      "AES identifica la contaminación provocada por visitantes entre las amenazas del área. Cuando los desechos quedan en la costa, se acumulan en espacios que requieren limpieza: el MARN documentó botellas, bolsas y latas en una jornada de 2021. La presencia de esos objetos está comprobada; no se conoce la procedencia de cada uno.",
     refs: ["F2", "F3"],
     scope: "Evidencia local documentada",
   },
@@ -11,7 +11,7 @@ export const relations = [
     cause: "Artes de pesca perdidas",
     effect: "Enredos de fauna marina",
     detail:
-      "En 2021 el MARN retiró redes del fondo marino e informó del rescate de un pez globo atrapado en restos de red. La recuperación subacuática requiere equipos capacitados.",
+      "Las redes perdidas pueden permanecer bajo el agua y atrapar animales. En 2021 el MARN retiró redes del fondo marino e informó del rescate de un pez globo atrapado en restos de red. Es un caso local documentado, no una medición de todos los daños a la fauna. La recuperación subacuática requiere equipos capacitados.",
     refs: ["F2"],
     scope: "Evidencia local documentada",
   },
@@ -19,7 +19,7 @@ export const relations = [
     cause: "Gestión inadecuada",
     effect: "Riesgos para ecosistemas",
     detail:
-      "El PNUMA describe el aporte de residuos terrestres mal gestionados a la basura marina. No contamos con una medición de esta vía para Los Cóbanos ni de pérdida coralina causada por residuos.",
+      "El PNUMA describe cómo los residuos terrestres mal gestionados pueden llegar al mar y afectar a los ecosistemas. Esa relación justifica prevenir y gestionar los desechos antes de que alcancen la costa. No contamos con una medición de esta vía para Los Cóbanos ni de pérdida coralina causada por residuos.",
     refs: ["F6", "F7"],
     scope: "Información general; no medición local",
   },
@@ -27,7 +27,7 @@ export const relations = [
     cause: "Viento y corrientes",
     effect: "Transporte de residuos",
     detail:
-      "Los materiales pueden desplazarse tras su abandono. El MARN documentó que las artes de pesca perdidas pueden moverse con las corrientes; no se atribuye un origen exacto a cada residuo.",
+      "El abandono no limita el problema al punto donde se deja un objeto: los materiales pueden desplazarse. El MARN documentó que las artes de pesca perdidas pueden moverse con las corrientes. Por ello, encontrar un residuo en una jornada no permite atribuirle un origen exacto.",
     refs: ["F2"],
     scope: "Proceso descrito; origen no determinado",
   },
@@ -66,6 +66,10 @@ export const proposals = [
     title: "Educación ambiental",
     description:
       "Señalización, charlas breves y materiales gráficos sobre especies y residuos, coordinados con comercios, centros educativos y autoridades.",
+    implementation:
+      "Acordar mensajes con la administración del área y actores locales; ubicarlos en puntos de ingreso y compartirlos antes de las visitas. Comprobar su comprensión con preguntas breves.",
+    viability:
+      "Requiere autorización para instalar materiales, responsables de actualización y coordinación con quienes atienden a visitantes.",
     refs: ["F2", "F5", "F7"],
   },
   {
@@ -73,6 +77,10 @@ export const proposals = [
     title: "Prevención y gestión adecuada",
     description:
       "Piloto de reducción y separación de residuos únicamente donde exista una ruta efectiva de recolección y un destino apropiado.",
+    implementation:
+      "Primero verificar con el servicio competente el retiro y destino de cada categoría. Después probar puntos de separación claramente rotulados y registrar su uso y la frecuencia de retiro.",
+    viability:
+      "No instalar recipientes de separación si no existe una ruta de recolección que mantenga separados los materiales.",
     refs: ["F7", "F8"],
   },
   {
@@ -80,6 +88,10 @@ export const proposals = [
     title: "Limpiezas con clasificación y seguimiento",
     description:
       "Jornadas coordinadas para clasificar y registrar residuos por fecha, sector y categoría. Redes subacuáticas y objetos peligrosos requieren personal capacitado.",
+    implementation:
+      "Definir con las autoridades los sectores, permisos, responsables y medidas de seguridad. Registrar por separado lugar, fecha y tipo de residuo para comparar jornadas sin confundirlas con el total producido en la zona.",
+    viability:
+      "Asegurar el retiro y destino de lo recolectado. La extracción subacuática debe quedar exclusivamente a cargo de equipos autorizados y capacitados.",
     refs: ["F2", "F3", "F4"],
   },
 ];

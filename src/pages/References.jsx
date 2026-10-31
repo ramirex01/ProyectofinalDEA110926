@@ -1,7 +1,14 @@
 import { ArrowUpRight, BookOpen, Camera, GraduationCap } from "lucide-react";
 import { PageIntro } from "../components/PageBits.jsx";
-import { sources } from "../data/content.js";
+import { sources, apaYears } from "../data/content.js";
 import { External } from "../components/StoryUI.jsx";
+
+const orderedSources = [...sources].sort(
+  (a, b) =>
+    a.author.localeCompare(b.author, "es") ||
+    apaYears[a.id].localeCompare(apaYears[b.id], "es") ||
+    a.title.localeCompare(b.title, "es"),
+);
 
 export default function References() {
   return (
@@ -25,20 +32,31 @@ export default function References() {
           <span className="eyebrow dark">REFERENCIAS · APA 7</span>
           <h2>Fuentes utilizadas</h2>
           <p>
-            Los identificadores [F1]–[F8] conectan las afirmaciones de las otras
-            páginas con sus publicaciones originales.
+            Las citas de autor y año enlazan las afirmaciones de las otras
+            páginas con sus publicaciones originales. Las letras a, b y c
+            distinguen obras del mismo autor y año.
           </p>
         </div>
         <ol className="reference-list">
-          {sources.map((source) => (
+          {orderedSources.map((source) => (
             <li key={source.id} id={`ref-${source.id}`}>
               <span className="ref-id">[{source.id}]</span>
               <p>
                 {source.author}
-                {source.author.endsWith(".") ? "" : "."} ({source.date}).{" "}
-                <cite>{source.title}</cite>.{" "}
-                {source.publisher && <>{source.publisher}. </>}
-                <External href={source.url}>Consultar fuente</External>
+                {source.author.endsWith(".") ? "" : "."} (
+                {source.date.replace(/^\d{4}/, apaYears[source.id])}).{" "}
+                {source.publisher ? (
+                  <>
+                    {source.title}. <cite>{source.publisher}</cite>.{" "}
+                  </>
+                ) : (
+                  <>
+                    <cite>{source.title}</cite>.{" "}
+                  </>
+                )}
+                <a href={source.url} target="_blank" rel="noopener noreferrer">
+                  {source.url}
+                </a>
               </p>
             </li>
           ))}

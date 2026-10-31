@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { ArrowRight, ChevronDown, Target } from "lucide-react";
-import { PageIntro, Citation } from "../components/PageBits.jsx";
+import { PageIntro, CitationGroup } from "../components/PageBits.jsx";
 import { audiences, plans, proposals } from "../data/experience.js";
 
 export default function Solutions() {
@@ -104,10 +104,13 @@ export default function Solutions() {
                 <div>
                   <p>{item.description}</p>
                   <p>
-                    Fundamento:{" "}
-                    {item.refs.map((id) => (
-                      <Citation key={id} id={id} />
-                    ))}
+                    <strong>Aplicación propuesta.</strong> {item.implementation}
+                  </p>
+                  <p>
+                    <strong>Condiciones de viabilidad.</strong> {item.viability}
+                  </p>
+                  <p>
+                    Fundamento: <CitationGroup ids={item.refs} />
                   </p>
                 </div>
               </details>

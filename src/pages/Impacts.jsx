@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { ArrowRight, Fish, Leaf, Waves, Wind } from "lucide-react";
-import { PageIntro, Citation } from "../components/PageBits.jsx";
+import { PageIntro, Citation, CitationGroup } from "../components/PageBits.jsx";
 import { relations } from "../data/experience.js";
 
 const icons = [Wind, Fish, Leaf, Waves];
@@ -92,10 +92,7 @@ export default function Impacts() {
           <h2>{relation.effect}</h2>
           <p>{relation.detail}</p>
           <div className="source-row">
-            Fuentes:{" "}
-            {relation.refs.map((id) => (
-              <Citation key={id} id={id} />
-            ))}
+            Fuentes: <CitationGroup ids={relation.refs} />
           </div>
         </article>
       </section>
@@ -106,7 +103,7 @@ export default function Impacts() {
           <p>
             Las redes pueden provocar enredos. El PNUMA describe riesgos
             generales de los plásticos para especies, corales y otros
-            ecosistemas marinos. <Citation id="F6" />
+            ecosistemas marinos <Citation id="F6" />.
           </p>
         </div>
         <div>
@@ -115,7 +112,7 @@ export default function Impacts() {
           <p>
             La basura puede perjudicar el entorno y generar costos, pero las
             fuentes reunidas no cuantifican pérdidas económicas ni
-            microplásticos en Los Cóbanos. <Citation id="F6" />
+            microplásticos en Los Cóbanos <Citation id="F6" />.
           </p>
         </div>
       </section>
